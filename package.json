@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --env=development",
-    "bsb-watch": "bsb -w",
-    "bsb-build": "bsb -clean-world -make-world",
-    "build": "bsb -clean-world -make-world && NODE_ENV=production webpack --env=production -p"
+    "watch": "bsb -clean-world -make-world -w",
+    "build":
+      "bsb -clean-world -make-world && NODE_ENV=production webpack --env=production -p"
   },
   "keywords": [],
   "author": "",

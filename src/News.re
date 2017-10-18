@@ -49,9 +49,9 @@ let make _children => {
     | {loading: false, stories: [||]} => <div> (ReasonReact.stringToElement "Failed") </div>
     | {loading: false} =>
       let titles =
-        Array.mapi
-          (fun index (story: API.story) => <Story key=(string_of_int story.id) index story />)
+        Array.map
+          (fun (story: API.story) => <Story key=(string_of_int story.id) story />)
           self.state.stories;
-      ReasonReact.arrayToElement titles
+      <ol> (ReasonReact.arrayToElement titles) </ol>
     }
 };

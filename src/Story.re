@@ -1,11 +1,13 @@
 let component = ReasonReact.statelessComponent "Story";
 
-let make story::(story: API.story) ::index _children => {
+let stringEl str => ReasonReact.stringToElement str;
+
+let make story::(story: API.story) _children => {
   let renderUrl () =>
     <p>
       (
         switch story.url {
-        | Some url => <a href=url target="_blank"> (ReasonReact.stringToElement url) </a>
+        | Some url => <a href=url target="_blank"> (stringEl url) </a>
         | None => ReasonReact.nullElement
         }
       )
@@ -13,12 +15,6 @@ let make story::(story: API.story) ::index _children => {
   {
     ...component,
     render: fun _ =>
-      <article>
-        <h2>
-          (ReasonReact.stringToElement (string_of_int index ^ ". "))
-          (ReasonReact.stringToElement story.title)
-        </h2>
-        (renderUrl ())
-      </article>
+      <li> <article> <h2> (stringEl story.title) </h2> (renderUrl ()) </article> </li>
   }
 };
