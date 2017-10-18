@@ -50,11 +50,8 @@ let make _children => {
     | {loading: false} =>
       let titles =
         Array.mapi
-          (
-            fun index (story: API.story) =>
-              <div key=(string_of_int index)> (ReasonReact.stringToElement story.title) </div>
-          )
+          (fun index (story: API.story) => <Story key=(string_of_int story.id) index story />)
           self.state.stories;
-      <div> (ReasonReact.arrayToElement titles) </div>
+      ReasonReact.arrayToElement titles
     }
 };

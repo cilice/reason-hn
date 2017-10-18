@@ -6,9 +6,8 @@ type story = {
   time: int,
   title: string,
   url: option string
-};
-
-type stories = array story;
+}
+and stories = array story;
 
 let apiBaseUrl = "https://serverless-api.hackernewsmobile.com/";
 
