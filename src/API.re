@@ -27,23 +27,11 @@ let parseStory json :story =>
 
 let parseStories json :array story => Json.Decode.(json |> array parseStory);
 
-let fetchTopStories page (errorCallback, callback) =>
-  Fetch.fetch (topStoriesUrl page)
-  |> Js.Promise.then_ Fetch.Response.json
+let getJson url => Fetch.fetch url |> Js.Promise.then_ Fetch.Response.json;
+
+let fetchTopStories page =>
+  getJson (topStoriesUrl page)
   |> Js.Promise.then_ (
-       fun json =>
-         json
-         |> parseStories
-         |> (
-           fun stories => {
-             callback (page, stories);
-             Js.Promise.resolve None
-           }
-         )
+       fun json => json |> parseStories |> (fun stories => Js.Promise.resolve (Some stories))
      )
-  |> Js.Promise.catch (
-       fun _ => {
-         errorCallback ();
-         Js.Promise.resolve None
-       }
-     );
+  |> Js.Promise.catch (fun _ => Js.Promise.resolve None);

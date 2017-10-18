@@ -5,7 +5,7 @@ type state = {
 };
 
 type action =
-  | Loaded (int, API.stories)
+  | Loaded API.stories
   | Loading
   | LoadingFailed;
 
@@ -14,9 +14,17 @@ let name = "News";
 let component = ReasonReact.reducerComponent name;
 
 let loadNextPage {ReasonReact.state: state, reduce} => {
-  let errorCallback = reduce (fun _ => LoadingFailed);
-  let callback = reduce (fun payload => Loaded payload);
-  API.fetchTopStories state.page (errorCallback, callback) |> ignore;
+  API.fetchTopStories state.page
+  |> Js.Promise.then_ (
+       fun result => {
+         switch result {
+         | Some stories => reduce (fun _ => Loaded stories) ()
+         | None => reduce (fun _ => LoadingFailed) ()
+         };
+         Js.Promise.resolve None
+       }
+     )
+  |> ignore;
   reduce (fun () => Loading) ()
 };
 
@@ -27,9 +35,9 @@ let make _children => {
     switch action {
     | Loading => ReasonReact.Update {...state, loading: true}
     | LoadingFailed => ReasonReact.Update {...state, loading: false}
-    | Loaded (page, data) =>
+    | Loaded data =>
       let stories = Array.append state.stories data;
-      ReasonReact.Update {stories, page: page + 1, loading: false}
+      ReasonReact.Update {stories, page: state.page + 1, loading: false}
     },
   didMount: fun self => {
     loadNextPage self;
