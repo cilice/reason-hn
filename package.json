@@ -1,0 +1,29 @@
+{
+  "name": "fido",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --env=development",
+    "bsb-watch": "bsb -w",
+    "bsb-build": "bsb -clean-world -make-world",
+    "build": "bsb -clean-world -make-world && NODE_ENV=production webpack --env=production -p"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bs-fetch": "^0.2.0",
+    "bs-json": "^0.2.3",
+    "bs-webapi": "^0.7.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "reason-react": ">=0.2.1"
+  },
+  "devDependencies": {
+    "bs-platform": "^1.9.3",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
