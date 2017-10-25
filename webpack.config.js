@@ -1,20 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = (env = 'development') => ({
   devtool: 'cheap-module-source-map',
-  entry: './lib/es6/src/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     publicPath: '/',
     path: path.resolve(__dirname, 'public'),
-    devtoolModuleFilenameTemplate: info =>
-      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   plugins: [
     new HtmlWebpackPlugin({ template: './src/index.html', inject: true }),
     new webpack.NamedModulesPlugin(),
+    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {

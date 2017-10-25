@@ -1,7 +1,7 @@
 'use strict';
 
 import * as Pervasives  from "bs-platform/lib/es6/pervasives.js";
-import * as Json_decode from "bs-json/lib/es6/src/Json_decode.js";
+import * as Json_decode from "bs-json/src/Json_decode.js";
 
 var apiBaseUrl = "https://serverless-api.hackernewsmobile.com/";
 

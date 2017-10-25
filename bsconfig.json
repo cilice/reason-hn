@@ -5,9 +5,14 @@
   an issue! */
   "name": "fido",
   "reason": { "react-jsx": 2 },
-  "bs-dependencies": ["reason-react", "bs-fetch", "bs-json", "bs-webapi"],
+  "bs-dependencies": ["reason-react", "bs-fetch", "bs-json"],
   "bsc-flags": ["-bs-no-version-header", "-bs-super-errors"],
-  "package-specs": ["es6"],
+  "package-specs": [
+    {
+      "module": "es6",
+      "in-source": true
+    }
+  ],
   "sources": [
     {
       "dir": "src",

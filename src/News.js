@@ -7,7 +7,7 @@ import * as React       from "react";
 import * as API$Fido    from "./API.js";
 import * as Pervasives  from "bs-platform/lib/es6/pervasives.js";
 import * as Story$Fido  from "./Story.js";
-import * as ReasonReact from "reason-react/lib/es6/src/reasonReact.js";
+import * as ReasonReact from "reason-react/src/reasonReact.js";
 
 var name = "News";
 
