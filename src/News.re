@@ -9,9 +9,7 @@ type action =
   | Loading
   | LoadingFailed;
 
-let name = "News";
-
-let component = ReasonReact.reducerComponent(name);
+let component = ReasonReact.reducerComponent("News");
 
 let loadNextPage = ({ReasonReact.state, reduce}) => {
   API.fetchTopStories(state.page)
