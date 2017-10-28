@@ -1,16 +1,16 @@
-let component = ReasonReact.statelessComponent "Story";
+let component = ReasonReact.statelessComponent("Story");
 
-let stringEl str => ReasonReact.stringToElement str;
+let stringEl = (str) => ReasonReact.stringToElement(str);
 
-let make story::(story: API.story) _children => {
-  let renderHeader () =>
+let make = (~story: API.story, _children) => {
+  let renderHeader = () =>
     <header>
       (
         switch story.url {
-        | Some url => <h2> <a href=url target="_blank"> (stringEl story.title) </a> </h2>
-        | None => <h2> (stringEl story.title) </h2>
+        | Some(url) => <h2> <a href=url target="_blank"> (stringEl(story.title)) </a> </h2>
+        | None => <h2> (stringEl(story.title)) </h2>
         }
       )
     </header>;
-  {...component, render: fun _ => <li> <article> (renderHeader ()) </article> </li>}
+  {...component, render: (_) => <li> <article> (renderHeader()) </article> </li>}
 };

@@ -1,1 +1,1 @@
-ReactDOMRe.renderToElementWithId <News /> "index";
+ReactDOMRe.renderToElementWithId(<News />, "index");
